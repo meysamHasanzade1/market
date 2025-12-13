@@ -11,7 +11,6 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 flex justify-between items-center px-6 py-3 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100">
-      {/* لوگو */}
       <Link href="/" className="flex items-center gap-2">
         <Home className="text-blue-600" size={24} />
         <h1 className="text-2xl font-extrabold text-gray-800 tracking-tight">
@@ -53,6 +52,12 @@ export default function Navbar() {
         ) : (
           // اگر وارد شده
           <div className="flex items-center gap-3">
+            <Link
+              className=" hover:text-blue-600 font-bold transition"
+              href={"/dashboard"}
+            >
+              داشبورد
+            </Link>
             <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg">
               <User size={18} className="text-gray-600" />
               <span className="text-sm font-medium text-gray-700">
