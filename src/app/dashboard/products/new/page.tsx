@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Product } from "../../../../../types/products";
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -36,12 +37,14 @@ function ProductsPage() {
             </tr>
           </thead>
           <tbody>
-            {products.map((p: any) => (
+            {products.map((p: Product) => (
               <tr key={p.id}>
                 <td className="border p-2">{p.name}</td>
                 <td className="border p-2">${p.price}</td>
                 <td className="border p-2">
-                  {new Date(p.createdAt).toLocaleDateString()}
+                  {p.createdAt
+                    ? new Date(p.createdAt).toLocaleDateString()
+                    : "-"}
                 </td>
               </tr>
             ))}

@@ -5,9 +5,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2025-08-27.basil",
 });
 
+interface CartItem{
+  title:string;
+  thumbnail:string;
+  price:number;
+  quantity:number;
+}
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const body :{items:CartItem[]} = await req.json();
     const { items } = body;
 
     if (!items || items.length === 0) {
@@ -18,7 +25,7 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      line_items: items.map((item: any) => ({
+      line_items: items.map((item) => ({
         price_data: {
           currency: "usd",
           product_data: {

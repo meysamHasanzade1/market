@@ -18,6 +18,7 @@ model User {
   products  Product[]
   orders    Order[]
   createdAt DateTime  @default(now())
+  carts     Cart[]
 }
 
 model Product {
@@ -29,6 +30,20 @@ model Product {
   vendorId    String
   orders      Order[]
   createdAt   DateTime @default(now())
+  carts       Cart[]
+}
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  productId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([userId, productId])
 }
 
 model Order {

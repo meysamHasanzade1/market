@@ -40,8 +40,11 @@ export async function POST(req: Request) {
     console.log("✅ User Created:", user);
 
     return NextResponse.json({ user }, { status: 201 });
-  } catch (error: any) {
-    console.error("❌ Register API Error:", error.message, error.stack);
-    return NextResponse.json({ error: "Internal Server Error", details: error.message }, { status: 500 });
-  }
+  } catch (error: unknown) {
+  console.error(error);
+  return NextResponse.json(
+    { error: "خطا در ثبت نام" },
+    { status: 500 }
+  );
+}
 }

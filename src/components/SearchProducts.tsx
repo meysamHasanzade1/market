@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { Product } from "../../types/products";
 
 export default function SearchProducts() {
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {

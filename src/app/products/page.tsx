@@ -6,9 +6,11 @@ import React, { useEffect, useState } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AddToCartButton from "@/components/AddToCartButton";
+import { Product } from "../../../types/products";
+import Image from "next/image";
 
 export default function Products() {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -40,7 +42,9 @@ export default function Products() {
             >
               <Link href={`/products/${product.id}`}>
                 <CardHeader className="p-0">
-                  <img
+                  <Image
+                    width={200}
+                    height={200}
                     src={product.thumbnail}
                     alt={product.title}
                     className="w-full h-56 object-cover hover:scale-105 transition-transform"
